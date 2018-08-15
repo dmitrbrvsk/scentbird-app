@@ -26,6 +26,8 @@ module.exports = {
     'max-len': ['error', { 'code': 120, 'ignoreUrls': true }],
     'no-console': ['warn'],
     'no-unused-vars': ['warn'],
+    'no-unused-expressions': 0,
+    'no-confusing-arrow': 0,
     'consistent-return': 0,
     'comma-dangle': ['error', 'never'],
     'linebreak-style': ['error', 'unix'],
@@ -34,6 +36,7 @@ module.exports = {
     'arrow-body-style': 0,
     'react/prop-types': 0,
     'react/jsx-indent': [2, 'tab'],
+    'react/destructuring-assignment': 0,
     'jsx-quotes': ['error', 'prefer-single'],
     'jsx-a11y/anchor-is-valid': [ 'error', {
       'components': [ 'Link' ],
