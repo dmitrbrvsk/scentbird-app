@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import SubscriptionHeader from '../SubscriptionHeader'
-import SubscriptionMainInfo from '../SubscriptionMainInfo'
+import SubscriptionMainInfo from '../../containers/SubscriptionMainInfo'
 import SubscriptionPurchase from '../SubscriptionPurchase'
 
 const SubscriptionContainer = styled.div`
