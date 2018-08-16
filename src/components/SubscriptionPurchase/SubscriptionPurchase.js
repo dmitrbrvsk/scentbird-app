@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import logoEncrypt from '../../images/encrypt.svg'
 import logoTypeCards from '../../images/type-cards.svg'
+import logoArrow from '../../images/arrow.svg'
 
 const PurchaseContainer = styled.div`
 	width: 700px;
@@ -120,6 +121,52 @@ const CreditCardTypesImg = styled.div`
 	background-image: url(${logoTypeCards});
 	background-repeat: no-repeat;
 	background-size: cover;
+`
+
+const PurchaseButtonContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-top: 30px;
+`
+
+const PurchaseSubmit = styled.button`
+	position: relative;
+	width: 250px;
+	height: 50px;
+	background-color: #ff458f;
+	cursor: pointer;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		right: 30px;
+		display: block;
+		width: 22px;
+		height: 16px;
+		background-repeat: no-repeat;
+		background-image: url(${logoArrow});
+	}
+`
+
+const PurchaseLink = styled.a`
+	font-size: 18px;
+
+	+ ${PurchaseSubmit} {
+		margin-left: 40px;
+	}
+`
+
+const PurchaseSubmitText = styled.div`
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 60px;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 18px;
 `
 
 const SubscriptionPurchase = () => (
@@ -316,6 +363,18 @@ const SubscriptionPurchase = () => (
 					</PurchaseInputGroup>
 				</CreditCard>
 			</PurchaseFormGroup>
+			<PurchaseButtonContainer>
+				<PurchaseLink
+					href='/'
+				>
+					{'Back'}
+				</PurchaseLink>
+				<PurchaseSubmit>
+					<PurchaseSubmitText>
+						{'buy now'}
+					</PurchaseSubmitText>
+				</PurchaseSubmit>
+			</PurchaseButtonContainer>
 		</PurchaseForm>
 	</PurchaseContainer>
 )
