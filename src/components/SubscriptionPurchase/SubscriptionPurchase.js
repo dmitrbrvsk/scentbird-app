@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import logoEncrypt from '../../images/encrypt.svg'
+import logoTypeCards from '../../images/type-cards.svg'
 
 const PurchaseContainer = styled.div`
 	width: 700px;
@@ -15,8 +17,12 @@ const PurchaseSubTitle = styled.div`
 	font-size: 16px;
 `
 
-const PurchaseForm = styled.div`
+const PurchaseForm = styled.form`
 	margin-top: 50px;
+`
+
+const PurchaseFormGroup = styled.div`
+	margin-top: 20px;
 `
 
 const PurchaseFormTitle = styled.div`
@@ -43,14 +49,14 @@ const PurchaseFormLabel = styled.label`
 
 	&:before {
 		content: '';
-    display: block;
-    position: absolute;
-    top: 7px;
-    left: -3px;
+		display: block;
+		position: absolute;
+		top: 7px;
+		left: -3px;
 		right: -3px;
 		height: 3px;
-    background-color: #fff;
-    z-index: -1;
+		background-color: #fff;
+		z-index: -1;
 	}
 `
 
@@ -71,7 +77,50 @@ const PurchaseInput = styled.input`
 		top: 0;
 		background-color: #fff;
 		font-size: 14px;
-  }
+	}
+`
+
+const PurchaseInputText = styled.div`
+	display: flex;
+	align-items: center;
+	margin-left: 30px;
+	height: 60px;
+`
+
+const CreditCard = styled.div`
+	padding: 20px 30px 0;
+	background-color: #fafafa;
+	border: 1px solid #e6e6e6;
+`
+
+const CreditCardHeader = styled.div`
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+`
+
+const CreditCardTitle = styled.div`
+	color: #7fbf67;
+	font-weight: 600;
+	text-transform: uppercase;
+`
+
+const CreditCardImg = styled.div`
+	width: 30px;
+	height: 35px;
+	margin-right: 10px;
+	background-image: url(${logoEncrypt});
+	background-repeat: no-repeat;
+	background-size: cover;
+`
+
+const CreditCardTypesImg = styled.div`
+	width: 145px;
+	height: 20px;
+	margin-left: auto;
+	background-image: url(${logoTypeCards});
+	background-repeat: no-repeat;
+	background-size: cover;
 `
 
 const SubscriptionPurchase = () => (
@@ -83,7 +132,7 @@ const SubscriptionPurchase = () => (
 			{'Billed monthly. Renews automatically, cancel any time. Free shipping.'}
 		</PurchaseSubTitle>
 		<PurchaseForm>
-			<div className='purchase-form__group'>
+			<PurchaseFormGroup>
 				<PurchaseFormTitle>
 					{'Create account'}
 				</PurchaseFormTitle>
@@ -109,8 +158,8 @@ const SubscriptionPurchase = () => (
 						</PurchaseFormLabel>
 					</PurchaseInputContainer>
 				</PurchaseInputGroup>
-			</div>
-			<div className='purchase-form__group'>
+			</PurchaseFormGroup>
+			<PurchaseFormGroup>
 				<PurchaseFormTitle>
 					{'Shipping address'}
 				</PurchaseFormTitle>
@@ -203,55 +252,71 @@ const SubscriptionPurchase = () => (
 							{'Mobile number (Optional)'}
 						</PurchaseFormLabel>
 					</PurchaseInputContainer>
+					<PurchaseInputContainer
+						widthInput='350px'
+					>
+						<PurchaseInputText>
+							{'We may send you special discounts and offers'}
+						</PurchaseInputText>
+					</PurchaseInputContainer>
 				</PurchaseInputGroup>
-			</div>
-			<div className='purchase-form__group'>
+			</PurchaseFormGroup>
+			<PurchaseFormGroup>
 				<PurchaseFormTitle>
 					{'Secure credit card payment'}
 				</PurchaseFormTitle>
-				<PurchaseInputGroup>
-					<PurchaseInputContainer
-						widthInput='425px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Credit card number'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='168px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Security code'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='140px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Month'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='140px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Year'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-				</PurchaseInputGroup>
-			</div>
+				<CreditCard>
+					<CreditCardHeader>
+						<CreditCardImg />
+						<CreditCardTitle>
+							{'128-bit encryption. yoy’re safe'}
+						</CreditCardTitle>
+						<CreditCardTypesImg />
+					</CreditCardHeader>
+					<PurchaseInputGroup>
+						<PurchaseInputContainer
+							widthInput='425px'
+						>
+							<PurchaseInput
+								type='text'
+							/>
+							<PurchaseFormLabel>
+								{'Credit card number'}
+							</PurchaseFormLabel>
+						</PurchaseInputContainer>
+						<PurchaseInputContainer
+							widthInput='168px'
+						>
+							<PurchaseInput
+								type='text'
+							/>
+							<PurchaseFormLabel>
+								{'Security code'}
+							</PurchaseFormLabel>
+						</PurchaseInputContainer>
+						<PurchaseInputContainer
+							widthInput='140px'
+						>
+							<PurchaseInput
+								type='text'
+							/>
+							<PurchaseFormLabel>
+								{'Month'}
+							</PurchaseFormLabel>
+						</PurchaseInputContainer>
+						<PurchaseInputContainer
+							widthInput='140px'
+						>
+							<PurchaseInput
+								type='text'
+							/>
+							<PurchaseFormLabel>
+								{'Year'}
+							</PurchaseFormLabel>
+						</PurchaseInputContainer>
+					</PurchaseInputGroup>
+				</CreditCard>
+			</PurchaseFormGroup>
 		</PurchaseForm>
 	</PurchaseContainer>
 )

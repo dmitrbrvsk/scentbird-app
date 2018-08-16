@@ -8,8 +8,11 @@ const resetStyles = () => injectGlobal`
   	padding: 0;
   	border: 0;
   	outline: 0;
-  	background: transparent;
   	box-sizing: border-box;
+	}
+
+	body {
+		font-size: 14px;
 	}
 `
 

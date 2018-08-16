@@ -7,8 +7,8 @@ import SubscriptionPurchase from '../SubscriptionPurchase'
 const SubscriptionContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	width: 1240px;
-	margin: 0 auto;
+	width: 1170px;
+	margin: 0 auto 50px;
 `
 
 const Subscription = () => (
