@@ -101,7 +101,6 @@ const CreditCardHeader = styled.div`
 
 const CreditCardTitle = styled.div`
 	color: #7fbf67;
-	font-weight: 600;
 	text-transform: uppercase;
 `
 
