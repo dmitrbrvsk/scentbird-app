@@ -4,7 +4,7 @@ import Subscription from '../Subscription'
 
 const globalStyles = () => injectGlobal`
 	@font-face {
-		font-family: 'Proxima Nova';
+		font-family: 'ProximaNova-Regular';
 		src: url('../../fonts/ProximaNova/ProximaNova-Regular.eot');
 		src: url('../../fonts/ProximaNova/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
 				 url('../../fonts/ProximaNova/ProximaNova-Regular.woff') format('woff'),
@@ -12,6 +12,7 @@ const globalStyles = () => injectGlobal`
 				 url('../../fonts/ProximaNova/ProximaNova-Regular.svg#webfont') format('svg');
 		font-weight: normal;
 		font-style: normal;
+}
 	}
 
 	* {
@@ -23,7 +24,7 @@ const globalStyles = () => injectGlobal`
 	}
 
 	body {
-		font: 14px Proxima Nova, sans-serif;
+		font: 14px 'ProximaNova-Regular', sans-serif;
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
 	}

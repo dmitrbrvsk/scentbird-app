@@ -24,14 +24,19 @@ const SubscriptionDescription = styled.div`
 	margin-top: 20px;
 	padding: 20px;
 	border-top: 1px solid #e6e6e6;
-	border-bottom: 1px solid #e6e6e6;
 `
 
 const SubscriptionDescriptionItem = styled.div`
 	display: flex;
 	justify-content: space-between;
 	&:not(:last-child) {
-		margin-bottom: 15px;
+		margin-bottom: 20px;
+	}
+	&:last-child {
+		padding-top: 20px;
+		border-top: 1px solid #e6e6e6;
+		font-size: 16px;
+		text-transform: uppercase;
 	}
 `
 
@@ -40,6 +45,17 @@ const SubscriptionContainer = styled.div`
 	flex-direction: column;
 	width: 400px;
 	margin-right: 70px;
+`
+
+const SubscriptionCoupon = styled.div`
+	margin-top: 30px;
+	font-size: 16px;
+`
+
+const SubscriptionLink = styled.a`
+	color: #ff458f;
+	border-bottom: 1px dashed #979797;
+	text-decoration: none;
 `
 
 const SubscriptionDescriptionName = styled.div``
@@ -83,6 +99,14 @@ class SubscriptionMainInfo extends Component {
 							})
 						)}
 					</SubscriptionDescription>
+					<SubscriptionCoupon>
+						{ 'Have a ' }
+						<SubscriptionLink
+							href='/'
+						>
+							{ 'coupon code?' }
+						</SubscriptionLink>
+					</SubscriptionCoupon>
 				</SubscriptionContent>
 				<Confirmation />
 			</SubscriptionContainer>

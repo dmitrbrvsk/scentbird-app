@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import logoEncrypt from '../../images/encrypt.svg'
 import logoTypeCards from '../../images/type-cards.svg'
 import logoArrow from '../../images/arrow.svg'
+import cardFormat from '../../utils/cardFormat'
+import Input from '../Input'
 
 const PurchaseContainer = styled.div`
 	width: 700px;
@@ -152,6 +154,7 @@ const PurchaseSubmit = styled.button`
 `
 
 const PurchaseLink = styled.a`
+	color: #9b9b9b;
 	font-size: 18px;
 
 	+ ${PurchaseSubmit} {
@@ -169,214 +172,142 @@ const PurchaseSubmitText = styled.div`
 	font-size: 18px;
 `
 
-const SubscriptionPurchase = () => (
-	<PurchaseContainer>
-		<PurchaseTitle>
-			{'month-to-month subscription'}
-		</PurchaseTitle>
-		<PurchaseSubTitle>
-			{'Billed monthly. Renews automatically, cancel any time. Free shipping.'}
-		</PurchaseSubTitle>
-		<PurchaseForm>
-			<PurchaseFormGroup>
-				<PurchaseFormTitle>
-					{'Create account'}
-				</PurchaseFormTitle>
-				<PurchaseInputGroup>
-					<PurchaseInputContainer
-						widthInput='340px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Email address'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='340px'
-					>
-						<PurchaseInput
-							type='password'
-						/>
-						<PurchaseFormLabel>
-							{'Password'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-				</PurchaseInputGroup>
-			</PurchaseFormGroup>
-			<PurchaseFormGroup>
-				<PurchaseFormTitle>
-					{'Shipping address'}
-				</PurchaseFormTitle>
-				<PurchaseInputGroup>
-					<PurchaseInputContainer
-						widthInput='340px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'First Name'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='340px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Last Name'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='460px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Street address'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='220px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Apt/Suite (Optional)'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='220px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Zip Code'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='220px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'City'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='220px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'State'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Country'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='350px'
-					>
-						<PurchaseInput
-							type='text'
-						/>
-						<PurchaseFormLabel>
-							{'Mobile number (Optional)'}
-						</PurchaseFormLabel>
-					</PurchaseInputContainer>
-					<PurchaseInputContainer
-						widthInput='350px'
-					>
-						<PurchaseInputText>
-							{'We may send you special discounts and offers'}
-						</PurchaseInputText>
-					</PurchaseInputContainer>
-				</PurchaseInputGroup>
-			</PurchaseFormGroup>
-			<PurchaseFormGroup>
-				<PurchaseFormTitle>
-					{'Secure credit card payment'}
-				</PurchaseFormTitle>
-				<CreditCard>
-					<CreditCardHeader>
-						<CreditCardImg />
-						<CreditCardTitle>
-							{'128-bit encryption. yoy’re safe'}
-						</CreditCardTitle>
-						<CreditCardTypesImg />
-					</CreditCardHeader>
-					<PurchaseInputGroup>
-						<PurchaseInputContainer
-							widthInput='425px'
-						>
-							<PurchaseInput
-								type='text'
+class SubscriptionPurchase extends Component {
+	state = {
+		// cardNumber: ''
+	}
+
+	cardFormat = event => {
+		// const { value } = event.target
+		// this.setState({
+		// 	cardNumber: cardFormat(value)
+		// })
+	}
+
+	render() {
+		return (
+			<PurchaseContainer>
+				<PurchaseTitle>
+					{'month-to-month subscription'}
+				</PurchaseTitle>
+				<PurchaseSubTitle>
+					{'Billed monthly. Renews automatically, cancel any time. Free shipping.'}
+				</PurchaseSubTitle>
+				<PurchaseForm>
+					<PurchaseFormGroup>
+						<PurchaseFormTitle>
+							{'Create account'}
+						</PurchaseFormTitle>
+						<PurchaseInputGroup>
+							<Input
+								width={ '340px' }
+								labelText={ 'Email address' }
 							/>
-							<PurchaseFormLabel>
-								{'Credit card number'}
-							</PurchaseFormLabel>
-						</PurchaseInputContainer>
-						<PurchaseInputContainer
-							widthInput='168px'
-						>
-							<PurchaseInput
-								type='text'
+							<Input
+								type={ 'password' }
+								width={ '340px' }
+								labelText={ 'Password' }
 							/>
-							<PurchaseFormLabel>
-								{'Security code'}
-							</PurchaseFormLabel>
-						</PurchaseInputContainer>
-						<PurchaseInputContainer
-							widthInput='140px'
-						>
-							<PurchaseInput
-								type='text'
+						</PurchaseInputGroup>
+					</PurchaseFormGroup>
+					<PurchaseFormGroup>
+						<PurchaseFormTitle>
+							{'Shipping address'}
+						</PurchaseFormTitle>
+						<PurchaseInputGroup>
+							<Input
+								width={ '340px' }
+								labelText={ 'First Name' }
 							/>
-							<PurchaseFormLabel>
-								{'Month'}
-							</PurchaseFormLabel>
-						</PurchaseInputContainer>
-						<PurchaseInputContainer
-							widthInput='140px'
-						>
-							<PurchaseInput
-								type='text'
+							<Input
+								width={ '340px' }
+								labelText={ 'Last Name' }
 							/>
-							<PurchaseFormLabel>
-								{'Year'}
-							</PurchaseFormLabel>
-						</PurchaseInputContainer>
-					</PurchaseInputGroup>
-				</CreditCard>
-			</PurchaseFormGroup>
-			<PurchaseButtonContainer>
-				<PurchaseLink
-					href='/'
-				>
-					{'Back'}
-				</PurchaseLink>
-				<PurchaseSubmit>
-					<PurchaseSubmitText>
-						{'buy now'}
-					</PurchaseSubmitText>
-				</PurchaseSubmit>
-			</PurchaseButtonContainer>
-		</PurchaseForm>
-	</PurchaseContainer>
-)
+							<Input
+								width={ '460px' }
+								labelText={ 'Street address' }
+							/>
+							<Input
+								width={ '220px' }
+								labelText={ 'Apt/Suite (Optional)' }
+							/>
+							<Input
+								width={ '220px' }
+								labelText={ 'Zip Code' }
+							/>
+							<Input
+								width={ '220px' }
+								labelText={ 'City' }
+							/>
+							<Input
+								width={ '220px' }
+								labelText={ 'State' }
+							/>
+							<Input
+								labelText={ 'Country' }
+							/>
+							<Input
+								width={ '350px' }
+								labelText={ 'Mobile number (Optional)' }
+							/>
+							<PurchaseInputContainer
+								widthInput='350px'
+							>
+								<PurchaseInputText>
+									{'We may send you special discounts and offers'}
+								</PurchaseInputText>
+							</PurchaseInputContainer>
+						</PurchaseInputGroup>
+					</PurchaseFormGroup>
+					<PurchaseFormGroup>
+						<PurchaseFormTitle>
+							{'Secure credit card payment'}
+						</PurchaseFormTitle>
+						<CreditCard>
+							<CreditCardHeader>
+								<CreditCardImg />
+								<CreditCardTitle>
+									{'128-bit encryption. yoy’re safe'}
+								</CreditCardTitle>
+								<CreditCardTypesImg />
+							</CreditCardHeader>
+							<PurchaseInputGroup>
+								<Input
+									width={ '425px' }
+									labelText={ 'Credit card number' }
+								/>
+								<Input
+									width={ '168px' }
+									labelText={ 'Security code' }
+								/>
+								<Input
+									width={ '140px' }
+									labelText={ 'Month' }
+								/>
+								<Input
+									width={ '140px' }
+									labelText={ 'Year' }
+									title={ 'Exp.' }
+								/>
+							</PurchaseInputGroup>
+						</CreditCard>
+					</PurchaseFormGroup>
+					<PurchaseButtonContainer>
+						<PurchaseLink
+							href='/'
+						>
+							{'Back'}
+						</PurchaseLink>
+						<PurchaseSubmit>
+							<PurchaseSubmitText>
+								{'buy now'}
+							</PurchaseSubmitText>
+						</PurchaseSubmit>
+					</PurchaseButtonContainer>
+				</PurchaseForm>
+			</PurchaseContainer>
+		)
+	}
+}
 
 export default SubscriptionPurchase

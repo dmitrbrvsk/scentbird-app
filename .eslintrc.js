@@ -27,6 +27,7 @@ module.exports = {
     'no-console': ['warn'],
     'no-unused-vars': ['warn'],
     'no-unused-expressions': 0,
+    'no-mixed-operators': 0,
     'no-confusing-arrow': 0,
     'consistent-return': 0,
     'comma-dangle': ['error', 'never'],
@@ -37,6 +38,7 @@ module.exports = {
     'react/prop-types': 0,
     'react/jsx-indent': [2, 'tab'],
     'react/destructuring-assignment': 0,
+    'react/jsx-wrap-multilines': ['error', { logical: 'parens-new-line' }],
     'jsx-quotes': ['error', 'prefer-single'],
     'jsx-a11y/anchor-is-valid': [ 'error', {
       'components': [ 'Link' ],
