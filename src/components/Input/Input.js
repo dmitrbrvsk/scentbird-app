@@ -54,33 +54,53 @@ const Title = styled.div`
 	font-size: 18px;
 `
 
+const Icon = styled.div`
+	position: absolute;
+	top: 50%;
+	right: -32px;
+	transform: translateY(-50%);
+	width: 22px;
+	height: 22px;
+	background-image: url(${props => props.src});
+	background-size: 100% auto;
+	cursor: pointer;
+`
+
 export default class Input extends Component {
 	state = {
-		emptyInput: true
+		isEmpty: true
 	}
 
-	checkEmpty = event => {
-		const { value } = event.target
-		this.setState({ emptyInput: value.length < 1 })
+	isEmpty = input => this.setState({ isEmpty: input.value.length < 1 })
+
+	handleChange = event => {
+		const input = event.target
+		this.isEmpty(input)
+		this.props.onChange && this.props.onChange(input)
 	}
 
 	render() {
 		const {
+			value,
+			srcIcon,
 			labelText,
 			title,
 			width,
-			type
+			type,
+			name
 		} = this.props
 		return (
 			<InputWrapper
 				widthInput={ width }
 			>
 				<InputContainer
+					value={ value || '' }
+					name={ name }
 					type={ type || 'text' }
-					onChange={ this.checkEmpty }
+					onChange={ this.handleChange }
 				/>
 				<Label
-					emptyInput={ this.state.emptyInput }
+					emptyInput={ this.state.isEmpty }
 				>
 					{ labelText }
 				</Label>
@@ -88,6 +108,11 @@ export default class Input extends Component {
 					<Title>
 						{ title }
 					</Title>
+				)}
+				{ srcIcon && (
+					<Icon
+						src={ srcIcon }
+					/>
 				)}
 			</InputWrapper>
 		)

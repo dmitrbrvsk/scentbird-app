@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Input from '../Input'
+import CheckboxWithText from '../CheckboxWithText'
+import cardFormat from '../../utils/cardFormat'
 import logoEncrypt from '../../images/encrypt.svg'
 import logoTypeCards from '../../images/type-cards.svg'
 import logoArrow from '../../images/arrow.svg'
-import cardFormat from '../../utils/cardFormat'
-import Input from '../Input'
+import logoQuestion from '../../images/question.svg'
 
 const PurchaseContainer = styled.div`
 	width: 700px;
@@ -33,61 +35,19 @@ const PurchaseFormTitle = styled.div`
 	margin-bottom: 15px;
 `
 
-const PurchaseInputContainer = styled.div`
-	display: inline-block;
-	position: relative;
-	width: ${props => props.widthInput ? props.widthInput : '100%'};
-	margin-bottom: 20px;
-`
-
-const PurchaseFormLabel = styled.label`
-	position: absolute;
-	top: 50%;
-	left: 15px;
-	transform: translateY(-50%);
-	color: #9b9b9b;
-	font-size: 18px;
-	pointer-events: none;
-	transition: top .3s ease, font .3s ease;
-
-	&:before {
-		content: '';
-		display: block;
-		position: absolute;
-		top: 7px;
-		left: -3px;
-		right: -3px;
-		height: 3px;
-		background-color: #fff;
-		z-index: -1;
-	}
-`
-
 const PurchaseInputGroup = styled.div`
 	display: flex;
-	justify-content: space-between;
 	flex-wrap: wrap;
-`
+	margin: 0 -10px;
 
-const PurchaseInput = styled.input`
-	width: 100%;
-	height: 60px;
-	padding: 0 15px;
-	border: 1px solid #e6e6e6;
-	font-size: 18px;
-
-	&:focus + ${PurchaseFormLabel} {
-		top: 0;
-		background-color: #fff;
-		font-size: 14px;
+	> * {
+		margin: 10px;
 	}
 `
 
-const PurchaseInputText = styled.div`
-	display: flex;
-	align-items: center;
-	margin-left: 30px;
+const PurchaseText = styled.div`
 	height: 60px;
+	line-height: 60px;
 `
 
 const CreditCard = styled.div`
@@ -174,14 +134,21 @@ const PurchaseSubmitText = styled.div`
 
 class SubscriptionPurchase extends Component {
 	state = {
-		// cardNumber: ''
+		email: '',
+		password: '',
+		cardNumber: ''
+	}
+
+	handleInput = input => {
+		const { name, value } = input
+		this.setState({ [name]: value })
 	}
 
 	cardFormat = event => {
-		// const { value } = event.target
-		// this.setState({
-		// 	cardNumber: cardFormat(value)
-		// })
+		const { value } = event.target
+		this.setState({
+			cardNumber: cardFormat(value)
+		})
 	}
 
 	render() {
@@ -202,11 +169,17 @@ class SubscriptionPurchase extends Component {
 							<Input
 								width={ '340px' }
 								labelText={ 'Email address' }
+								value={ this.state.email }
+								name='email'
+								onChange={ this.handleInput }
 							/>
 							<Input
-								type={ 'password' }
 								width={ '340px' }
 								labelText={ 'Password' }
+								value={ this.state.password }
+								name='password'
+								onChange={ this.handleInput }
+								type={ 'password' }
 							/>
 						</PurchaseInputGroup>
 					</PurchaseFormGroup>
@@ -250,15 +223,14 @@ class SubscriptionPurchase extends Component {
 								width={ '350px' }
 								labelText={ 'Mobile number (Optional)' }
 							/>
-							<PurchaseInputContainer
-								widthInput='350px'
-							>
-								<PurchaseInputText>
-									{'We may send you special discounts and offers'}
-								</PurchaseInputText>
-							</PurchaseInputContainer>
+							<PurchaseText>
+								{'We may send you special discounts and offers'}
+							</PurchaseText>
 						</PurchaseInputGroup>
 					</PurchaseFormGroup>
+					<CheckboxWithText
+						text={ 'Use this address as my billing address' }
+					/>
 					<PurchaseFormGroup>
 						<PurchaseFormTitle>
 							{'Secure credit card payment'}
@@ -273,12 +245,16 @@ class SubscriptionPurchase extends Component {
 							</CreditCardHeader>
 							<PurchaseInputGroup>
 								<Input
+									name='cardNumber'
+									value={ this.state.cardNumber }
+									onChange={ this.handleInput }
 									width={ '425px' }
 									labelText={ 'Credit card number' }
 								/>
 								<Input
 									width={ '168px' }
 									labelText={ 'Security code' }
+									srcIcon={ logoQuestion }
 								/>
 								<Input
 									width={ '140px' }

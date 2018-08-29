@@ -15,13 +15,16 @@ const SubscriptionContent = styled.div`
 	border: 1px solid #e6e6e6;
 `
 
-const SubscriptionImage = styled.img`
+const SubscriptionImage = styled.div`
 	height: 300px;
+	background-image: url(${logoProduct});
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-bottom: 20px;
 `
 
 const SubscriptionDescription = styled.div`
 	min-height: 200px;
-	margin-top: 20px;
 	padding: 20px;
 	border-top: 1px solid #e6e6e6;
 `
@@ -29,9 +32,11 @@ const SubscriptionDescription = styled.div`
 const SubscriptionDescriptionItem = styled.div`
 	display: flex;
 	justify-content: space-between;
+
 	&:not(:last-child) {
 		margin-bottom: 20px;
 	}
+
 	&:last-child {
 		padding-top: 20px;
 		border-top: 1px solid #e6e6e6;
@@ -78,9 +83,7 @@ class SubscriptionMainInfo extends Component {
 		return (
 			<SubscriptionContainer>
 				<SubscriptionContent>
-					<SubscriptionImage
-						src={ logoProduct }
-					/>
+					<SubscriptionImage />
 					<SubscriptionDescription>
 						{ pageSubscription.loading ? (
 							<Loader />

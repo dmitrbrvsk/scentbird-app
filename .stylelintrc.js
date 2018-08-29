@@ -1,6 +1,10 @@
 module.exports = {
-  'extends': 'stylelint-config-standard',
-  'rules': {
-    'indentation': 'tab'
-  }
+	'processors': ['stylelint-processor-styled-components'],
+	'extends': [
+		'stylelint-config-standard',
+		'stylelint-config-styled-components'
+	],
+	'rules': {
+		'indentation': 'tab'
+	}
 };
