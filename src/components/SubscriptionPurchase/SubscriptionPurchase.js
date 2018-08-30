@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import SubscriptionDesc from '../SubscriptionDesc'
 import Input from '../Input'
 import CheckboxWithText from '../CheckboxWithText'
 import cardFormat from '../../utils/cardFormat'
@@ -8,22 +9,12 @@ import logoTypeCards from '../../images/type-cards.svg'
 import logoArrow from '../../images/arrow.svg'
 import logoQuestion from '../../images/question.svg'
 
-const PurchaseContainer = styled.div`
+const SubscriptionContainer = styled.div`
 	width: 700px;
 
 	@media (max-width: 1170px) {
 		width: 320px;
 	}
-`
-
-const PurchaseTitle = styled.div`
-	font-size: 36px;
-	text-transform: uppercase;
-`
-
-const PurchaseSubTitle = styled.div`
-	color: #ff408e;
-	font-size: 16px;
 `
 
 const PurchaseForm = styled.form`
@@ -176,13 +167,11 @@ class SubscriptionPurchase extends Component {
 
 	render() {
 		return (
-			<PurchaseContainer>
-				<PurchaseTitle>
-					{'month-to-month subscription'}
-				</PurchaseTitle>
-				<PurchaseSubTitle>
-					{'Billed monthly. Renews automatically, cancel any time. Free shipping.'}
-				</PurchaseSubTitle>
+			<SubscriptionContainer>
+				<SubscriptionDesc
+					title={ 'month-to-month subscription' }
+					text={ 'Billed monthly. Renews automatically, cancel any time. Free shipping.' }
+				/>
 				<PurchaseForm>
 					<PurchaseFormGroup>
 						<PurchaseFormTitle>
@@ -304,7 +293,7 @@ class SubscriptionPurchase extends Component {
 						</PurchaseSubmit>
 					</PurchaseButtonContainer>
 				</PurchaseForm>
-			</PurchaseContainer>
+			</SubscriptionContainer>
 		)
 	}
 }
