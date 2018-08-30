@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import MediaQuery from 'react-responsive'
 import * as subscriptionActions from '../../actions/Subscription'
 import Loader from '../../components/Loader'
 import Confirmation from '../../components/Confirmation'
@@ -125,7 +126,9 @@ class SubscriptionMainInfo extends Component {
 						</SubscriptionLink>
 					</SubscriptionCoupon>
 				</SubscriptionContent>
-				<Confirmation />
+				<MediaQuery query='(min-width: 1170px)'>
+					<Confirmation />
+				</MediaQuery>
 			</SubscriptionContainer>
 		)
 	}

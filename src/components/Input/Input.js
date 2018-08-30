@@ -6,6 +6,10 @@ const InputWrapper = styled.div`
 	position: relative;
 	width: ${props => props.widthInput ? props.widthInput : '100%'};
 	margin-bottom: 20px;
+
+	@media (max-width: 1170px) {
+		width: 100%;
+	}
 `
 
 const Label = styled.label`
@@ -52,6 +56,10 @@ const Title = styled.div`
 	transform: translateY(-50%);
 	color: #9b9b9b;
 	font-size: 18px;
+
+	@media (max-width: 1170px) {
+		display: none;
+	}
 `
 
 const Icon = styled.div`

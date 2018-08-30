@@ -9,6 +9,7 @@ const Header = styled.div`
 
 	@media (max-width: 1170px) {
 		justify-content: center;
+		order: -2;
 	}
 `
 

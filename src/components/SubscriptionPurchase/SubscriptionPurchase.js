@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import MediaQuery from 'react-responsive'
 import SubscriptionDesc from '../SubscriptionDesc'
 import Input from '../Input'
 import CheckboxWithText from '../CheckboxWithText'
@@ -19,6 +20,11 @@ const SubscriptionContainer = styled.div`
 
 const PurchaseForm = styled.form`
 	margin-top: 50px;
+
+	@media (max-width: 1170px) {
+		margin-top: 0;
+		padding: 0 15px;
+	}
 `
 
 const PurchaseFormGroup = styled.div`
@@ -28,6 +34,11 @@ const PurchaseFormGroup = styled.div`
 const PurchaseFormTitle = styled.div`
 	font-size: 24px;
 	margin-bottom: 15px;
+
+	@media (max-width: 1170px) {
+		text-align: center;
+		font-size: 20px;
+	}
 `
 
 const PurchaseInputGroup = styled.div`
@@ -43,23 +54,36 @@ const PurchaseInputGroup = styled.div`
 const PurchaseText = styled.div`
 	height: 60px;
 	line-height: 60px;
+
+	@media (max-width: 1170px) {
+		display: none;
+	}
 `
 
 const CreditCard = styled.div`
 	padding: 20px 30px 30px;
 	background-color: #fafafa;
 	border: 1px solid #e6e6e6;
+
+	@media (max-width: 1170px) {
+		padding: 20px 15px 30px;
+	}
 `
 
 const CreditCardHeader = styled.div`
 	display: flex;
 	align-items: center;
+	flex-flow: row wrap;
 	margin-bottom: 20px;
 `
 
 const CreditCardTitle = styled.div`
 	color: #7fbf67;
 	text-transform: uppercase;
+
+	@media (max-width: 1170px) {
+		font-size: 12px;
+	}
 `
 
 const CreditCardImg = styled.div`
@@ -69,6 +93,11 @@ const CreditCardImg = styled.div`
 	background-image: url(${logoEncrypt});
 	background-repeat: no-repeat;
 	background-size: cover;
+
+	@media (max-width: 1170px) {
+		width: 25px;
+		height: 30px;
+	}
 `
 
 const CreditCardTypesImg = styled.div`
@@ -78,6 +107,10 @@ const CreditCardTypesImg = styled.div`
 	background-image: url(${logoTypeCards});
 	background-repeat: no-repeat;
 	background-size: cover;
+
+	@media (max-width: 1170px) {
+		margin: 15px 0 0;
+	}
 `
 
 const PurchaseButtonContainer = styled.div`
@@ -98,7 +131,9 @@ const PurchaseSubmit = styled.button`
 	background-color: #ff458f;
 	cursor: pointer;
 
-	@media (min-width: 1170px) {
+	@media (max-width: 1170px) {
+		width: 290px;
+
 		&:before {
 			content: '';
 			position: absolute;
@@ -168,10 +203,12 @@ class SubscriptionPurchase extends Component {
 	render() {
 		return (
 			<SubscriptionContainer>
-				<SubscriptionDesc
-					title={ 'month-to-month subscription' }
-					text={ 'Billed monthly. Renews automatically, cancel any time. Free shipping.' }
-				/>
+				<MediaQuery query='(min-width: 1170px)'>
+					<SubscriptionDesc
+						title={ 'month-to-month subscription' }
+						text={ 'Billed monthly. Renews automatically, cancel any time. Free shipping.' }
+					/>
+				</MediaQuery>
 				<PurchaseForm>
 					<PurchaseFormGroup>
 						<PurchaseFormTitle>

@@ -4,6 +4,13 @@ import logoConfirm from '../../images/confirm.svg'
 
 const ConfirmationContainer = styled.div`
 	margin-top: 25px;
+
+	@media (max-width: 1170px) {
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		padding: 0 15px;
+	}
 `
 
 const ImgConfirmation = styled.div`
@@ -12,11 +19,21 @@ const ImgConfirmation = styled.div`
 	background-image: url(${logoConfirm});
 	background-repeat: no-repeat;
 	background-size: cover;
+
+	@media (max-width: 1170px) {
+		width: 280px;
+		height: 180px;
+	}
 `
 
 const TextConfirmation = styled.div`
 	margin-top: 20px;
 	line-height: 20px;
+
+	@media (max-width: 1170px) {
+		margin-top: 0;
+		font-size: 16px;
+	}
 `
 
 const Confirmation = () => (

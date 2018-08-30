@@ -6,6 +6,10 @@ const CheckboxContainer = styled.label`
 	padding: 20px 0 40px;
 	cursor: pointer;
 	user-select: none;
+
+	@media (max-width: 1170px) {
+		padding-bottom: 0;
+	}
 `
 
 const CheckboxText = styled.span`
