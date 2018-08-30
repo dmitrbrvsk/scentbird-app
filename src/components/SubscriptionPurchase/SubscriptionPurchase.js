@@ -10,6 +10,10 @@ import logoQuestion from '../../images/question.svg'
 
 const PurchaseContainer = styled.div`
 	width: 700px;
+
+	@media (max-width: 1170px) {
+		width: 320px;
+	}
 `
 
 const PurchaseTitle = styled.div`
@@ -51,7 +55,7 @@ const PurchaseText = styled.div`
 `
 
 const CreditCard = styled.div`
-	padding: 20px 30px 0;
+	padding: 20px 30px 30px;
 	background-color: #fafafa;
 	border: 1px solid #e6e6e6;
 `
@@ -90,6 +94,10 @@ const PurchaseButtonContainer = styled.div`
 	justify-content: flex-end;
 	align-items: center;
 	margin-top: 30px;
+
+	@media (max-width: 1170px) {
+		justify-content: center;
+	}
 `
 
 const PurchaseSubmit = styled.button`
@@ -99,17 +107,19 @@ const PurchaseSubmit = styled.button`
 	background-color: #ff458f;
 	cursor: pointer;
 
-	&:before {
-		content: '';
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		right: 30px;
-		display: block;
-		width: 22px;
-		height: 16px;
-		background-repeat: no-repeat;
-		background-image: url(${logoArrow});
+	@media (min-width: 1170px) {
+		&:before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			right: 30px;
+			display: block;
+			width: 22px;
+			height: 16px;
+			background-repeat: no-repeat;
+			background-image: url(${logoArrow});
+		}
 	}
 `
 
@@ -119,6 +129,14 @@ const PurchaseLink = styled.a`
 
 	+ ${PurchaseSubmit} {
 		margin-left: 40px;
+
+		@media (max-width: 1170px) {
+			margin-left: 0;
+		}
+	}
+
+	@media (max-width: 1170px) {
+		display: none;
 	}
 `
 
@@ -130,6 +148,11 @@ const PurchaseSubmitText = styled.div`
 	color: #fff;
 	text-transform: uppercase;
 	font-size: 18px;
+
+	@media (max-width: 1170px) {
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 `
 
 class SubscriptionPurchase extends Component {

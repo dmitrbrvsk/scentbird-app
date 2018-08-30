@@ -13,6 +13,11 @@ const SubscriptionContent = styled.div`
 	height: 680px;
 	padding: 30px;
 	border: 1px solid #e6e6e6;
+
+	@media (max-width: 1170px) {
+		padding: 20px;
+		border-color: transparent;
+	}
 `
 
 const SubscriptionImage = styled.div`
@@ -27,6 +32,10 @@ const SubscriptionDescription = styled.div`
 	min-height: 200px;
 	padding: 20px;
 	border-top: 1px solid #e6e6e6;
+
+	@media (max-width: 1170px) {
+		padding: 20px 0 0;
+	}
 `
 
 const SubscriptionDescriptionItem = styled.div`
@@ -50,6 +59,11 @@ const SubscriptionContainer = styled.div`
 	flex-direction: column;
 	width: 400px;
 	margin-right: 70px;
+
+	@media (max-width: 1170px) {
+		width: 320px;
+		margin-right: 0;
+	}
 `
 
 const SubscriptionCoupon = styled.div`

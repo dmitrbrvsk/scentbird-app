@@ -6,6 +6,10 @@ const Header = styled.div`
 	display: flex;
 	flex: 0 0 100%;
 	margin: 20px 0;
+
+	@media (max-width: 1170px) {
+		justify-content: center;
+	}
 `
 
 const LogoLink = styled.a`
@@ -13,6 +17,12 @@ const LogoLink = styled.a`
 	height: 40px;
 	background-image: url(${logo});
 	background-repeat: no-repeat;
+	background-size: 100% auto;
+
+	@media (max-width: 1170px) {
+		width: 115px;
+		height: 30px;
+	}
 `
 
 const SubscriptionHeader = () => (

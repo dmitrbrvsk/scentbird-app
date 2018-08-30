@@ -9,6 +9,10 @@ const SubscriptionContainer = styled.div`
 	flex-wrap: wrap;
 	width: 1170px;
 	margin: 0 auto 50px;
+
+	@media (max-width: 1170px) {
+		width: 320px;
+	}
 `
 
 const Subscription = () => (
