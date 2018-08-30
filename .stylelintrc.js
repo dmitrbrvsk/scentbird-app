@@ -5,6 +5,8 @@ module.exports = {
 		'stylelint-config-styled-components'
 	],
 	'rules': {
-		'indentation': 'tab'
+		'indentation': 'tab',
+		'number-leading-zero': 'never',
+		'selector-pseudo-element-colon-notation': 'single'
 	}
 };
