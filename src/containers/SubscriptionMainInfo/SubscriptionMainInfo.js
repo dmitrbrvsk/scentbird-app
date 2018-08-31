@@ -31,7 +31,7 @@ const SubscriptionImage = styled.div`
 
 const SubscriptionDescription = styled.div`
 	min-height: 200px;
-	padding: 20px;
+	padding: 20px 0;
 	border-top: 1px solid #e6e6e6;
 
 	@media (max-width: 1170px) {

@@ -21,6 +21,10 @@ const SubscriptionDescTitle = styled.div`
 const SubscriptionDescText = styled.div`
 	color: #ff408e;
 	font-size: 16px;
+
+	@media (max-width: 1170px) {
+		padding: 0 10px;
+	}
 `
 
 const SubscriptionDesc = ({ title, text }) => (

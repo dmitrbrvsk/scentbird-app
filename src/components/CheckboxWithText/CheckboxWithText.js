@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const CheckboxContainer = styled.label`
 	display: flex;
-	padding: 20px 0 40px;
+	padding: 20px 0;
 	cursor: pointer;
 	user-select: none;
 
@@ -57,12 +57,13 @@ const CheckboxInput = styled.input`
 	}
 `
 
-const CheckboxWithText = props => {
-	const { text } = props
+const CheckboxWithText = ({ text, checked, onChange }) => {
 	return (
 		<CheckboxContainer>
 			<CheckboxInput
 				type='checkbox'
+				defaultChecked={ checked }
+				onChange={ onChange }
 			/>
 			<Checkbox primary />
 			{ text && (

@@ -185,7 +185,13 @@ class SubscriptionPurchase extends Component {
 	state = {
 		email: '',
 		password: '',
-		cardNumber: ''
+		cardNumber: '',
+		hideBillingAddress: true
+	}
+
+	handleShowBillingAddress = event => {
+		const { checked } = event.target
+		this.setState({ hideBillingAddress: checked })
 	}
 
 	handleInput = input => {
@@ -238,37 +244,46 @@ class SubscriptionPurchase extends Component {
 						</PurchaseFormTitle>
 						<PurchaseInputGroup>
 							<Input
+								name={ 'shippingFirstName' }
 								width={ '340px' }
 								labelText={ 'First Name' }
 							/>
 							<Input
+								name={ 'shippingLastName' }
 								width={ '340px' }
 								labelText={ 'Last Name' }
 							/>
 							<Input
+								name={ 'shippingStreet' }
 								width={ '460px' }
 								labelText={ 'Street address' }
 							/>
 							<Input
+								name={ 'shippingApt' }
 								width={ '220px' }
 								labelText={ 'Apt/Suite (Optional)' }
 							/>
 							<Input
+								name={ 'shippingZip' }
 								width={ '220px' }
 								labelText={ 'Zip Code' }
 							/>
 							<Input
+								name={ 'shippingCity' }
 								width={ '220px' }
 								labelText={ 'City' }
 							/>
 							<Input
+								name={ 'shippingState' }
 								width={ '220px' }
 								labelText={ 'State' }
 							/>
 							<Input
+								name={ 'shippingCountry' }
 								labelText={ 'Country' }
 							/>
 							<Input
+								name={ 'shippingMobile' }
 								width={ '350px' }
 								labelText={ 'Mobile number (Optional)' }
 							/>
@@ -279,7 +294,57 @@ class SubscriptionPurchase extends Component {
 					</PurchaseFormGroup>
 					<CheckboxWithText
 						text={ 'Use this address as my billing address' }
+						checked={ this.state.hideBillingAddress }
+						onChange={ this.handleShowBillingAddress }
 					/>
+					{!this.state.hideBillingAddress && (
+						<PurchaseFormGroup>
+							<PurchaseFormTitle>
+								{'Billing address'}
+							</PurchaseFormTitle>
+							<PurchaseInputGroup>
+								<Input
+									name={ 'billingFirstName' }
+									width={ '340px' }
+									labelText={ 'First Name' }
+								/>
+								<Input
+									name={ 'billingLastName' }
+									width={ '340px' }
+									labelText={ 'Last Name' }
+								/>
+								<Input
+									name={ 'billingStreet' }
+									width={ '460px' }
+									labelText={ 'Street address' }
+								/>
+								<Input
+									name={ 'billingApt' }
+									width={ '220px' }
+									labelText={ 'Apt/Suite (Optional)' }
+								/>
+								<Input
+									name={ 'billingZip' }
+									width={ '220px' }
+									labelText={ 'Zip Code' }
+								/>
+								<Input
+									name={ 'billingCity' }
+									width={ '220px' }
+									labelText={ 'City' }
+								/>
+								<Input
+									name={ 'billingState' }
+									width={ '220px' }
+									labelText={ 'State' }
+								/>
+								<Input
+									name={ 'billingCountry' }
+									labelText={ 'Country' }
+								/>
+							</PurchaseInputGroup>
+						</PurchaseFormGroup>
+					)}
 					<PurchaseFormGroup>
 						<PurchaseFormTitle>
 							{'Secure credit card payment'}
