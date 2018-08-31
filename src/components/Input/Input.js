@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import MaskedInput from 'react-text-mask'
 import styled from 'styled-components'
 
 const InputWrapper = styled.div`
@@ -89,6 +90,7 @@ export default class Input extends Component {
 
 	render() {
 		const {
+			mask,
 			value,
 			srcIcon,
 			labelText,
@@ -101,11 +103,15 @@ export default class Input extends Component {
 			<InputWrapper
 				widthInput={ width }
 			>
-				<InputContainer
-					value={ value || '' }
+				<MaskedInput
+					mask={ mask || false }
 					name={ name }
+					value={ value || '' }
 					type={ type || 'text' }
 					onChange={ this.handleChange }
+					render={ (ref, props) => (
+						<InputContainer innerRef={ ref } { ...props } />
+					) }
 				/>
 				<Label
 					emptyInput={ this.state.isEmpty }

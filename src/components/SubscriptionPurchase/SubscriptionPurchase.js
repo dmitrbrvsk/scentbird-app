@@ -186,6 +186,7 @@ class SubscriptionPurchase extends Component {
 		email: '',
 		password: '',
 		cardNumber: '',
+		securityCode: '',
 		hideBillingAddress: true
 	}
 
@@ -364,11 +365,21 @@ class SubscriptionPurchase extends Component {
 									onChange={ this.handleInput }
 									width={ '425px' }
 									labelText={ 'Credit card number' }
+									mask={ [
+										/\d/, /\d/, /\d/, /\d/, ' ',
+										/\d/, /\d/, /\d/, /\d/, ' ',
+										/\d/, /\d/, /\d/, /\d/, ' ',
+										/\d/, /\d/, /\d/, /\d/
+									] }
 								/>
 								<Input
+									name='securityCode'
+									value={ this.state.securityCode }
+									onChange={ this.handleInput }
 									width={ '168px' }
 									labelText={ 'Security code' }
 									srcIcon={ logoQuestion }
+									mask={ [/\d/, /\d/, /\d/, /\d/, /\d/] }
 								/>
 								<Input
 									width={ '140px' }
