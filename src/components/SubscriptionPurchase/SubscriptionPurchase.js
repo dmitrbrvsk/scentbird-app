@@ -127,13 +127,13 @@ const PurchaseButtonContainer = styled.div`
 
 const PurchaseSubmit = styled.button`
 	position: relative;
-	width: 250px;
+	width: 100%;
 	height: 50px;
 	background-color: #ff458f;
 	cursor: pointer;
 
-	@media (max-width: 1170px) {
-		width: 290px;
+	@media (min-width: 1170px) {
+		width: 250px;
 
 		&:before {
 			content: '';

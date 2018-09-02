@@ -75,6 +75,10 @@ const Icon = styled.div`
 	background-image: url(${props => props.src});
 	background-repeat: no-repeat;
 	cursor: pointer;
+
+	@media (max-width: 1170px) {
+		display: none;
+	}
 `
 
 export default class Input extends Component {
