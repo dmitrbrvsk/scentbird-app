@@ -65,13 +65,15 @@ const Title = styled.div`
 
 const Icon = styled.div`
 	position: absolute;
-	top: 50%;
-	right: -32px;
-	transform: translateY(-50%);
-	width: 22px;
-	height: 22px;
+	top: ${props => props.top};
+	right: ${props => props.right};
+	bottom: ${props => props.bottom};
+	left: ${props => props.left};
+	transform: ${props => props.transform};
+	width: ${props => props.width ? props.width : '18px'};
+	height: ${props => props.height ? props.height : '18px'};
 	background-image: url(${props => props.src});
-	background-size: 100% auto;
+	background-repeat: no-repeat;
 	cursor: pointer;
 `
 
@@ -92,7 +94,7 @@ export default class Input extends Component {
 		const {
 			mask,
 			value,
-			srcIcon,
+			icon,
 			labelText,
 			title,
 			width,
@@ -123,9 +125,12 @@ export default class Input extends Component {
 						{ title }
 					</Title>
 				)}
-				{ srcIcon && (
+				{ icon && (
 					<Icon
-						src={ srcIcon }
+						src={ icon.src }
+						top={ icon.top }
+						right={ icon.right }
+						transform={ icon.transform }
 					/>
 				)}
 			</InputWrapper>

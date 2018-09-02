@@ -9,6 +9,7 @@ import logoEncrypt from '../../images/encrypt.svg'
 import logoTypeCards from '../../images/type-cards.svg'
 import logoArrow from '../../images/arrow.svg'
 import logoQuestion from '../../images/question.svg'
+import logoLock from '../../images/lock.svg'
 
 const SubscriptionContainer = styled.div`
 	width: 700px;
@@ -187,6 +188,9 @@ class SubscriptionPurchase extends Component {
 		password: '',
 		cardNumber: '',
 		securityCode: '',
+		cardMonth: '',
+		cardYear: '',
+		shippingMobile: '',
 		hideBillingAddress: true
 	}
 
@@ -285,8 +289,16 @@ class SubscriptionPurchase extends Component {
 							/>
 							<Input
 								name={ 'shippingMobile' }
+								value={ this.state.shippingMobile }
+								onChange={ this.handleInput }
 								width={ '350px' }
 								labelText={ 'Mobile number (Optional)' }
+								mask={ [
+									/\d/, ' ', /\d/, /\d/, /\d/, ' ',
+									/\d/, /\d/, /\d/, ' ',
+									/\d/, /\d/, ' ',
+									/\d/, /\d/
+								] }
 							/>
 							<PurchaseText>
 								{'We may send you special discounts and offers'}
@@ -365,6 +377,12 @@ class SubscriptionPurchase extends Component {
 									onChange={ this.handleInput }
 									width={ '425px' }
 									labelText={ 'Credit card number' }
+									icon={ {
+										src: logoLock,
+										top: '50%',
+										right: '5px',
+										transform: 'translateY(-50%)'
+									} }
 									mask={ [
 										/\d/, /\d/, /\d/, /\d/, ' ',
 										/\d/, /\d/, /\d/, /\d/, ' ',
@@ -378,17 +396,30 @@ class SubscriptionPurchase extends Component {
 									onChange={ this.handleInput }
 									width={ '168px' }
 									labelText={ 'Security code' }
-									srcIcon={ logoQuestion }
+									icon={ {
+										src: logoQuestion,
+										top: '50%',
+										right: '-32px',
+										transform: 'translateY(-50%)'
+									} }
 									mask={ [/\d/, /\d/, /\d/, /\d/, /\d/] }
 								/>
 								<Input
+									name='cardMonth'
+									value={ this.state.cardMonth }
+									onChange={ this.handleInput }
 									width={ '140px' }
 									labelText={ 'Month' }
+									mask={ [/\d/, /\d/] }
 								/>
 								<Input
+									name='cardYear'
+									value={ this.state.cardYear }
+									onChange={ this.handleInput }
 									width={ '140px' }
 									labelText={ 'Year' }
 									title={ 'Exp.' }
+									mask={ [/\d/, /\d/] }
 								/>
 							</PurchaseInputGroup>
 						</CreditCard>
@@ -399,7 +430,7 @@ class SubscriptionPurchase extends Component {
 						>
 							{'Back'}
 						</PurchaseLink>
-						<PurchaseSubmit>
+						<PurchaseSubmit type='button'>
 							<PurchaseSubmitText>
 								{'buy now'}
 							</PurchaseSubmitText>
