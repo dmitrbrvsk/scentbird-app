@@ -183,16 +183,35 @@ const PurchaseSubmitText = styled.div`
 
 class SubscriptionPurchase extends Component {
 	state = {
-		email: '',
+		fields: {
+			email: '',
+			password: '',
+			shippingFirstName: '',
+			shippingLastName: '',
+			shippingStreet: '',
+			shippingApt: '',
+			shippingZip: '',
+			shippingCity: '',
+			shippingState: '',
+			shippingCountry: '',
+			shippingMobile: '',
+			billingFirstName: '',
+			billingLastName: '',
+			billingStreet: '',
+			billingApt: '',
+			billingZip: '',
+			billingCity: '',
+			billingState: '',
+			billingCountry: '',
+			billingMobile: '',
+			cardNumber: '',
+			securityCode: '',
+			cardMonth: '',
+			cardYear: ''
+		},
 		emailError: '',
-		password: '',
 		passwordError: '',
-		cardNumber: '',
-		securityCode: '',
 		securityCodeError: '',
-		cardMonth: '',
-		cardYear: '',
-		shippingMobile: '',
 		hideBillingAddress: true
 	}
 
@@ -203,7 +222,12 @@ class SubscriptionPurchase extends Component {
 
 	handleInput = input => {
 		const { name, value } = input
-		this.setState({ [name]: value })
+		const fields = { ...this.state.fields }
+		fields[name] = value
+		this.setState(prevState => ({
+			...prevState,
+			fields
+		}))
 	}
 
 	validateForm = () => {
@@ -215,17 +239,27 @@ class SubscriptionPurchase extends Component {
 		}
 		const emailPattern = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
 
-		if (!this.state.email.match(emailPattern)) {
+		Object.keys(this.state.fields).forEach(keyField => {
+			const keyError = `${keyField}Error`
+			if (this.state.fields[keyField].length === 0) {
+				errors[keyError] = 'This field is required'
+				isError = true
+			} else {
+				errors[keyError] = ''
+			}
+		})
+
+		if (!errors.emailError && !this.state.fields.email.match(emailPattern)) {
 			isError = true
 			errors.emailError = 'Requires valid email'
 		}
 
-		if (this.state.password.length < 10) {
+		if (!errors.passwordError && this.state.fields.password.length < 10) {
 			isError = true
 			errors.passwordError = 'Password needs to be atleast 10 characters long'
 		}
 
-		if (this.state.securityCode === '111') {
+		if (!errors.securityCodeError && this.state.fields.securityCode === '111') {
 			isError = true
 			errors.securityCodeError = 'Requires valid security code'
 		}
@@ -244,8 +278,12 @@ class SubscriptionPurchase extends Component {
 
 		if (!err) {
 			this.setState({
+				email: '',
+				emailError: '',
 				password: '',
-				passwordError: ''
+				passwordError: '',
+				securityCode: '',
+				securityCodeError: ''
 			})
 		}
 	}
@@ -268,7 +306,7 @@ class SubscriptionPurchase extends Component {
 							<Input
 								width={ '340px' }
 								labelText={ 'Email address' }
-								value={ this.state.email }
+								value={ this.state.fields.email }
 								name='email'
 								onChange={ this.handleInput }
 								errorText={ this.state.emailError }
@@ -276,7 +314,7 @@ class SubscriptionPurchase extends Component {
 							<Input
 								width={ '340px' }
 								labelText={ 'Password' }
-								value={ this.state.password }
+								value={ this.state.fields.password }
 								name='password'
 								onChange={ this.handleInput }
 								type={ 'password' }
@@ -291,42 +329,65 @@ class SubscriptionPurchase extends Component {
 						<PurchaseInputGroup>
 							<Input
 								name={ 'shippingFirstName' }
+								value={ this.state.fields.shippingFirstName }
+								onChange={ this.handleInput }
 								width={ '340px' }
 								labelText={ 'First Name' }
+								errorText={ this.state.shippingFirstNameError }
 							/>
 							<Input
 								name={ 'shippingLastName' }
+								value={ this.state.fields.shippingLastName }
+								onChange={ this.handleInput }
 								width={ '340px' }
 								labelText={ 'Last Name' }
+								errorText={ this.state.shippingLastNameError }
 							/>
 							<Input
 								name={ 'shippingStreet' }
+								value={ this.state.fields.shippingStreet }
+								onChange={ this.handleInput }
 								width={ '460px' }
 								labelText={ 'Street address' }
+								errorText={ this.state.shippingStreetError }
 							/>
 							<Input
 								name={ 'shippingApt' }
+								value={ this.state.fields.shippingApt }
+								onChange={ this.handleInput }
 								width={ '220px' }
 								labelText={ 'Apt/Suite (Optional)' }
 							/>
 							<Input
 								name={ 'shippingZip' }
+								value={ this.state.fields.shippingZip }
+								onChange={ this.handleInput }
 								width={ '220px' }
 								labelText={ 'Zip Code' }
+								errorText={ this.state.shippingZipError }
 							/>
 							<Input
 								name={ 'shippingCity' }
+								value={ this.state.fields.shippingCity }
+								onChange={ this.handleInput }
 								width={ '220px' }
 								labelText={ 'City' }
+								errorText={ this.state.shippingCityError }
 							/>
 							<Input
 								name={ 'shippingState' }
+								value={ this.state.fields.shippingState }
+								onChange={ this.handleInput }
 								width={ '220px' }
 								labelText={ 'State' }
+								errorText={ this.state.shippingStateError }
 							/>
 							<Input
 								name={ 'shippingCountry' }
+								value={ this.state.fields.shippingCountry }
+								onChange={ this.handleInput }
 								labelText={ 'Country' }
+								errorText={ this.state.shippingCountryError }
 							/>
 							<Input
 								name={ 'shippingMobile' }
@@ -359,18 +420,24 @@ class SubscriptionPurchase extends Component {
 							<PurchaseInputGroup>
 								<Input
 									name={ 'billingFirstName' }
+									value={ this.state.fields.billingFirstName }
 									width={ '340px' }
 									labelText={ 'First Name' }
+									errorText={ this.state.billingFirstNameError }
 								/>
 								<Input
 									name={ 'billingLastName' }
+									value={ this.state.fields.billingLastName }
 									width={ '340px' }
 									labelText={ 'Last Name' }
+									errorText={ this.state.billingLastNameError }
 								/>
 								<Input
 									name={ 'billingStreet' }
+									value={ this.state.fields.billingStreet }
 									width={ '460px' }
 									labelText={ 'Street address' }
+									errorText={ this.state.billingStreetError }
 								/>
 								<Input
 									name={ 'billingApt' }
@@ -379,22 +446,30 @@ class SubscriptionPurchase extends Component {
 								/>
 								<Input
 									name={ 'billingZip' }
+									value={ this.state.fields.billingZip }
 									width={ '220px' }
 									labelText={ 'Zip Code' }
+									errorText={ this.state.billingZipError }
 								/>
 								<Input
 									name={ 'billingCity' }
+									value={ this.state.fields.billingCity }
 									width={ '220px' }
 									labelText={ 'City' }
+									errorText={ this.state.billingCityError }
 								/>
 								<Input
 									name={ 'billingState' }
+									value={ this.state.fields.billingState }
 									width={ '220px' }
 									labelText={ 'State' }
+									errorText={ this.state.billingStateError }
 								/>
 								<Input
 									name={ 'billingCountry' }
+									value={ this.state.fields.billingCountry }
 									labelText={ 'Country' }
+									errorText={ this.state.billingCountryError }
 								/>
 							</PurchaseInputGroup>
 						</PurchaseFormGroup>
@@ -414,7 +489,7 @@ class SubscriptionPurchase extends Component {
 							<PurchaseInputGroup>
 								<Input
 									name='cardNumber'
-									value={ this.state.cardNumber }
+									value={ this.state.fields.cardNumber }
 									onChange={ this.handleInput }
 									width={ '425px' }
 									labelText={ 'Credit card number' }
@@ -430,10 +505,11 @@ class SubscriptionPurchase extends Component {
 										/\d/, /\d/, /\d/, /\d/, ' ',
 										/\d/, /\d/, /\d/, /\d/
 									] }
+									errorText={ this.state.cardNumberError }
 								/>
 								<Input
 									name='securityCode'
-									value={ this.state.securityCode }
+									value={ this.state.fields.securityCode }
 									onChange={ this.handleInput }
 									width={ '168px' }
 									labelText={ 'Security code' }
@@ -448,20 +524,22 @@ class SubscriptionPurchase extends Component {
 								/>
 								<Input
 									name='cardMonth'
-									value={ this.state.cardMonth }
+									value={ this.state.fields.cardMonth }
 									onChange={ this.handleInput }
 									width={ '140px' }
 									labelText={ 'Month' }
 									mask={ [/\d/, /\d/] }
+									errorText={ this.state.cardMonthError }
 								/>
 								<Input
 									name='cardYear'
-									value={ this.state.cardYear }
+									value={ this.state.fields.cardYear }
 									onChange={ this.handleInput }
 									width={ '140px' }
 									labelText={ 'Year' }
 									title={ 'Exp.' }
 									mask={ [/\d/, /\d/] }
+									errorText={ this.state.cardYearError }
 								/>
 							</PurchaseInputGroup>
 						</CreditCard>
