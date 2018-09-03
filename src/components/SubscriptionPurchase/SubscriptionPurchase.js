@@ -4,7 +4,6 @@ import MediaQuery from 'react-responsive'
 import SubscriptionDesc from 'components/SubscriptionDesc'
 import Input from 'components/Input'
 import CheckboxWithText from 'components/CheckboxWithText'
-import cardFormat from 'utils/cardFormat'
 import logoEncrypt from 'images/encrypt.svg'
 import logoTypeCards from 'images/type-cards.svg'
 import logoArrow from 'images/arrow.svg'
@@ -185,9 +184,12 @@ const PurchaseSubmitText = styled.div`
 class SubscriptionPurchase extends Component {
 	state = {
 		email: '',
+		emailError: '',
 		password: '',
+		passwordError: '',
 		cardNumber: '',
 		securityCode: '',
+		securityCodeError: '',
 		cardMonth: '',
 		cardYear: '',
 		shippingMobile: '',
@@ -204,11 +206,48 @@ class SubscriptionPurchase extends Component {
 		this.setState({ [name]: value })
 	}
 
-	cardFormat = event => {
-		const { value } = event.target
-		this.setState({
-			cardNumber: cardFormat(value)
-		})
+	validateForm = () => {
+		let isError = false
+		const errors = {
+			emailError: '',
+			passwordError: '',
+			securityCodeError: ''
+		}
+		const emailPattern = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
+
+		if (!this.state.email.match(emailPattern)) {
+			isError = true
+			errors.emailError = 'Requires valid email'
+		}
+
+		if (this.state.password.length < 10) {
+			isError = true
+			errors.passwordError = 'Password needs to be atleast 10 characters long'
+		}
+
+		if (this.state.securityCode === '111') {
+			isError = true
+			errors.securityCodeError = 'Requires valid security code'
+		}
+
+		this.setState(prevState => ({
+			...prevState,
+			...errors
+		}))
+
+		return isError
+	}
+
+	submitForm = event => {
+		event.preventDefault()
+		const err = this.validateForm()
+
+		if (!err) {
+			this.setState({
+				password: '',
+				passwordError: ''
+			})
+		}
 	}
 
 	render() {
@@ -232,6 +271,7 @@ class SubscriptionPurchase extends Component {
 								value={ this.state.email }
 								name='email'
 								onChange={ this.handleInput }
+								errorText={ this.state.emailError }
 							/>
 							<Input
 								width={ '340px' }
@@ -240,6 +280,7 @@ class SubscriptionPurchase extends Component {
 								name='password'
 								onChange={ this.handleInput }
 								type={ 'password' }
+								errorText={ this.state.passwordError }
 							/>
 						</PurchaseInputGroup>
 					</PurchaseFormGroup>
@@ -402,7 +443,8 @@ class SubscriptionPurchase extends Component {
 										right: '-32px',
 										transform: 'translateY(-50%)'
 									} }
-									mask={ [/\d/, /\d/, /\d/, /\d/, /\d/] }
+									mask={ [/\d/, /\d/, /\d/] }
+									errorText={ this.state.securityCodeError }
 								/>
 								<Input
 									name='cardMonth'
@@ -430,7 +472,10 @@ class SubscriptionPurchase extends Component {
 						>
 							{'Back'}
 						</PurchaseLink>
-						<PurchaseSubmit type='button'>
+						<PurchaseSubmit
+							type={ 'button' }
+							onClick={ this.submitForm }
+						>
 							<PurchaseSubmitText>
 								{'buy now'}
 							</PurchaseSubmitText>

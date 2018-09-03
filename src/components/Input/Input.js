@@ -41,7 +41,7 @@ const InputContainer = styled.input`
 	width: 100%;
 	height: 60px;
 	padding: 0 15px;
-	border: 1px solid #e6e6e6;
+	border: 1px solid ${props => props.error ? '#fd6464' : '#e6e6e6'};
 	font-size: 18px;
 
 	&:focus + ${Label} {
@@ -81,6 +81,13 @@ const Icon = styled.div`
 	}
 `
 
+const ErrorText = styled.div`
+	position: absolute;
+	bottom: -20px;
+	color: #f00;
+	font-size: 12px;
+`
+
 export default class Input extends Component {
 	state = {
 		isEmpty: true
@@ -103,7 +110,8 @@ export default class Input extends Component {
 			title,
 			width,
 			type,
-			name
+			name,
+			errorText
 		} = this.props
 		return (
 			<InputWrapper
@@ -115,6 +123,7 @@ export default class Input extends Component {
 					value={ value || '' }
 					type={ type || 'text' }
 					onChange={ this.handleChange }
+					error={ errorText }
 					render={ (ref, props) => (
 						<InputContainer innerRef={ ref } { ...props } />
 					) }
@@ -137,6 +146,11 @@ export default class Input extends Component {
 						transform={ icon.transform }
 					/>
 				)}
+				{ errorText && (
+					<ErrorText>
+						{ errorText }
+					</ErrorText>
+				) }
 			</InputWrapper>
 		)
 	}
