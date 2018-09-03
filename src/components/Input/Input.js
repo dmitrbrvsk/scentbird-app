@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 const InputWrapper = styled.div`
 	display: inline-block;
-	position: relative;
 	width: ${props => props.widthInput ? props.widthInput : '100%'};
 	margin-bottom: 20px;
 
@@ -39,7 +38,7 @@ const Label = styled.label`
 
 const InputContainer = styled.input`
 	width: 100%;
-	height: 60px;
+	height: 50px;
 	padding: 0 15px;
 	border: 1px solid ${props => props.error ? '#fd6464' : '#e6e6e6'};
 	font-size: 18px;
@@ -48,6 +47,10 @@ const InputContainer = styled.input`
 		top: 0;
 		font-size: 14px;
 	}
+`
+
+const InputInner = styled.div`
+	position: relative;
 `
 
 const Title = styled.div`
@@ -82,8 +85,8 @@ const Icon = styled.div`
 `
 
 const ErrorText = styled.div`
-	position: absolute;
-	bottom: -20px;
+	position: relative;
+	bottom: -5px;
 	color: #f00;
 	font-size: 12px;
 `
@@ -117,22 +120,24 @@ export default class Input extends Component {
 			<InputWrapper
 				widthInput={ width }
 			>
-				<MaskedInput
-					mask={ mask || false }
-					name={ name }
-					value={ value || '' }
-					type={ type || 'text' }
-					onChange={ this.handleChange }
-					error={ errorText }
-					render={ (ref, props) => (
-						<InputContainer innerRef={ ref } { ...props } />
-					) }
-				/>
-				<Label
-					emptyInput={ this.state.isEmpty }
-				>
-					{ labelText }
-				</Label>
+				<InputInner>
+					<MaskedInput
+						mask={ mask || false }
+						name={ name }
+						value={ value || '' }
+						type={ type || 'text' }
+						onChange={ this.handleChange }
+						error={ errorText }
+						render={ (ref, props) => (
+							<InputContainer innerRef={ ref } { ...props } />
+						) }
+					/>
+					<Label
+						emptyInput={ this.state.isEmpty }
+					>
+						{ labelText }
+					</Label>
+				</InputInner>
 				{ title && (
 					<Title>
 						{ title }
