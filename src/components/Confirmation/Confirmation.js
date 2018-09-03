@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import logoConfirm from '../../images/confirm.svg'
+import logoConfirm from 'images/confirm.svg'
 
 const ConfirmationContainer = styled.div`
 	margin-top: 25px;

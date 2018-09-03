@@ -1,6 +1,6 @@
 import React from 'react'
 import { injectGlobal } from 'styled-components'
-import Subscription from '../Subscription'
+import Subscription from 'components/Subscription'
 
 const globalStyles = () => injectGlobal`
 	@font-face {

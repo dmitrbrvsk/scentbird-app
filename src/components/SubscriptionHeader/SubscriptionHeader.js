@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import logo from '../../images/logo.svg'
+import logo from 'images/logo.svg'
 
 const Header = styled.div`
 	display: flex;

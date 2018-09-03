@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
-import SubscriptionHeader from '../SubscriptionHeader'
-import SubscriptionMainInfo from '../../containers/SubscriptionMainInfo'
-import SubscriptionDesc from '../SubscriptionDesc'
-import SubscriptionPurchase from '../SubscriptionPurchase'
-import Confirmation from '../Confirmation'
+import SubscriptionHeader from 'components/SubscriptionHeader'
+import SubscriptionMainInfo from 'containers/SubscriptionMainInfo'
+import SubscriptionDesc from 'components/SubscriptionDesc'
+import SubscriptionPurchase from 'components/SubscriptionPurchase'
+import Confirmation from 'components/Confirmation'
 
 const SubscriptionContainer = styled.div`
 	display: flex;

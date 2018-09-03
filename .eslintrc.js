@@ -19,6 +19,16 @@ module.exports = {
     'jsx-a11y',
     'import'
   ],
+  'settings': {
+    'import/resolver': {
+      'node': {
+        'moduleDirectory': [
+          'node_modules',
+          'src'
+        ]
+      }
+    }
+  },
   'rules': {
     'no-tabs': 0,
     'indent': ['error', 'tab', { 'SwitchCase': 1 }],
