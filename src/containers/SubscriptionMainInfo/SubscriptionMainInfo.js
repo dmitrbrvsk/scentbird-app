@@ -80,7 +80,9 @@ const SubscriptionLink = styled.a`
 
 const SubscriptionDescriptionName = styled.div``
 
-const SubscriptionDescriptionValue = styled.div``
+const SubscriptionDescriptionValue = styled.div`
+	text-transform: uppercase;
+`
 
 class SubscriptionMainInfo extends Component {
 	componentDidMount() {
