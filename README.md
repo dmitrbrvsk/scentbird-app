@@ -8,6 +8,12 @@ Install dependencies in your project directory with:
 
 ## npm install
 
+or at times faster with [yarn](https://github.com/yarnpkg/yarn)
+
+```
+yarn install
+```
+
 In the project directory, you can then run:
 
 ## npm start
