@@ -391,7 +391,7 @@ class SubscriptionPurchase extends Component {
 							/>
 							<Input
 								name={ 'shippingMobile' }
-								value={ this.state.shippingMobile }
+								value={ this.state.fields.shippingMobile }
 								onChange={ this.handleInput }
 								width={ '350px' }
 								labelText={ 'Mobile number (Optional)' }
