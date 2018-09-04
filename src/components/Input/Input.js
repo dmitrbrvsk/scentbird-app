@@ -3,6 +3,7 @@ import MaskedInput from 'react-text-mask'
 import styled from 'styled-components'
 
 const InputWrapper = styled.div`
+	position: relative;
 	display: inline-block;
 	width: ${props => props.widthInput ? props.widthInput : '100%'};
 	margin-bottom: 20px;
@@ -137,19 +138,19 @@ export default class Input extends Component {
 					>
 						{ labelText }
 					</Label>
+					{ icon && (
+						<Icon
+							src={ icon.src }
+							top={ icon.top }
+							right={ icon.right }
+							transform={ icon.transform }
+						/>
+					)}
 				</InputInner>
 				{ title && (
 					<Title>
 						{ title }
 					</Title>
-				)}
-				{ icon && (
-					<Icon
-						src={ icon.src }
-						top={ icon.top }
-						right={ icon.right }
-						transform={ icon.transform }
-					/>
 				)}
 				{ errorText && (
 					<ErrorText>
